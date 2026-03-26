@@ -35,17 +35,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.6rem 3rem;display:
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10rem 2rem 6rem;position:relative}
 .hero-eyebrow{font-family:var(--hd);font-size:0.65rem;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--tx3);margin-bottom:3rem}
 .hero-title{font-family:var(--hd);font-size:clamp(3.2rem,8vw,7.5rem);font-weight:300;letter-spacing:-0.01em;line-height:1.05;color:var(--tx);margin-bottom:2.5rem}
-.hero-tagline{font-family:var(--hd);font-style:italic;font-weight:300;font-size:clamp(1.1rem,2.2vw,1.5rem);color:var(--tx2);max-width:500px;line-height:1.7;margin-bottom:3.5rem}
-.hero-hook{text-align:center;margin-bottom:4rem;padding:0 1rem}
-.hero-hook-line{font-family:var(--hd);font-weight:300;font-size:0.82rem;color:var(--tx3);letter-spacing:0.06em;line-height:2.2}
-.hero-hook-peak{font-family:var(--hd);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--tx3);letter-spacing:0.02em;text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1px;display:block;margin:1rem 0 0.3rem}
-.hero-hook-paid{font-family:var(--hd);font-weight:300;font-size:clamp(1.6rem,3.5vw,2.6rem);color:var(--tx);letter-spacing:0.02em;display:block;margin-bottom:0.8rem}
-.hero-hook-ratio{font-family:var(--hd);font-weight:300;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);display:block}
+.hero-tagline{font-family:var(--hd);font-style:italic;font-weight:300;font-size:clamp(1.1rem,2.2vw,1.5rem);color:var(--tx2);max-width:500px;line-height:1.7;margin-bottom:4rem}
+.hero-asymmetry{text-align:center;margin-bottom:4rem;padding:2.5rem 2rem;border:1px solid var(--brd);background:var(--bg2);max-width:420px;width:100%}
+.hero-asym-label{font-family:var(--hd);font-weight:400;font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--tx3);margin-bottom:1.8rem}
+.hero-asym-row{display:flex;justify-content:center;align-items:baseline;gap:1.5rem;margin-bottom:0.6rem}
+.hero-asym-peak{font-family:var(--hd);font-weight:300;font-size:clamp(1rem,2vw,1.3rem);color:var(--tx3);letter-spacing:0.02em}
+.hero-asym-arrow{font-family:var(--hd);font-size:0.7rem;color:var(--tx3)}
+.hero-asym-paid{font-family:var(--hd);font-weight:400;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--tx);letter-spacing:0.02em}
+.hero-asym-note{font-family:var(--hd);font-weight:300;font-size:0.68rem;letter-spacing:0.15em;color:var(--tx3);margin-top:0.4rem}
 .hero-numbers{display:flex;gap:1px;background:var(--brd);border:1px solid var(--brd)}
 .hero-num{background:var(--bg);padding:2rem 3rem;text-align:center;min-width:140px}
 .hero-num-value{font-family:var(--hd);font-size:1.8rem;font-weight:300;letter-spacing:0.02em;display:block;margin-bottom:0.3rem}
 .hero-num-label{font-family:var(--hd);font-size:0.58rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--tx3)}
-.hero-bottom{position:absolute;bottom:3.5rem;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.hero-bottom{position:absolute;bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:0.8rem}
 .hero-based{font-family:var(--hd);font-style:italic;font-weight:300;font-size:0.85rem;color:var(--tx3);letter-spacing:0.08em}
 .hero-scroll{width:1px;height:40px;background:linear-gradient(to bottom,var(--tx3),transparent);animation:scrollP 2s ease-in-out infinite}
 @keyframes scrollP{0%,100%{opacity:0.3}50%{opacity:0.8}}
@@ -107,7 +109,8 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .manifesto-rules li{counter-increment:rule;padding:0.8rem 0 0.8rem 3rem;color:var(--tx2);font-family:var(--hd);font-weight:300;font-size:1.05rem;line-height:1.6;position:relative;border-bottom:1px solid rgba(28,25,22,0.4)}
 .manifesto-rules li:last-child{border-bottom:none}
 .manifesto-rules li::before{content:counter(rule);position:absolute;left:0;font-family:var(--hd);font-size:0.85rem;font-weight:300;color:var(--tx3)}
-.manifesto-phrase{font-family:var(--hd);font-style:italic;font-weight:300;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--tx);padding:4rem 0 4rem 2.5rem;line-height:1.5;border-left:2px solid var(--red);margin:4rem 0}
+.manifesto-phrase{font-family:var(--hd);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.5vw,1.8rem);color:var(--tx);padding:2.5rem 0 2.5rem 2.5rem;line-height:1.5;border-left:2px solid var(--red);margin:2rem 0}
+.manifesto-phrase:last-child{color:var(--red);border-left-color:var(--tx3)}
 
 .verify-content{max-width:700px}
 .verify-ens{text-align:center;padding:4rem 0;margin-bottom:4rem;border:1px solid var(--brd);background:var(--bg2)}
@@ -140,16 +143,16 @@ footer{padding:8rem 2rem 3rem;text-align:center;max-width:1100px;margin:0 auto;b
 
 @media(max-width:768px){
 nav{padding:1.2rem 1.5rem}
-.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(5,5,5,0.97);padding:2rem 1.5rem;gap:1.5rem;border-bottom:1px solid var(--brd)}
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--bg);padding:2rem 1.5rem;gap:1.5rem;border-bottom:1px solid var(--brd);z-index:101}
 .nav-links.open{display:flex}
 .nav-toggle{display:block}
 section{padding:6rem 1.5rem}
-.hero{padding:8rem 1.5rem 5rem}
+.hero{padding:8rem 1.5rem 7rem}
 .hero-numbers{flex-direction:row;flex-wrap:wrap;width:100%}
 .hero-num{flex:1 1 48%;padding:1.5rem 1rem;min-width:0}
 .episodes-grid{grid-template-columns:1fr}
 .episode-card{padding:2rem 1.5rem}
-.manifesto-phrase{padding-left:1.5rem;font-size:1.3rem}
+.manifesto-phrase{padding-left:1.5rem;font-size:1.2rem;margin:1.5rem 0;padding-top:2rem;padding-bottom:2rem}
 .copy-hint{display:none}
 }
 </style>
@@ -167,14 +170,17 @@ section{padding:6rem 1.5rem}
 </nav>
 
 <section class="hero">
-<div class="hero-eyebrow">A Public On-Chain Portfolio · Season 1</div>
+<div class="hero-eyebrow">Season 1 · On-Chain Verified · fundofregret.eth</div>
 <h1 class="hero-title">Fund of<br>Regret</h1>
 <p class="hero-tagline">Either we regret buying.<br>Or you regret not buying.</p>
-<div class="hero-hook">
-<span class="hero-hook-line">Six tokens. Same quantity. At their peak worth</span>
-<span class="hero-hook-peak">$272,000</span>
-<span class="hero-hook-paid">$3,950</span>
-<span class="hero-hook-ratio">69× below peak</span>
+<div class="hero-asymmetry">
+<div class="hero-asym-label">Math of Regret</div>
+<div class="hero-asym-row">
+<span class="hero-asym-peak">$272,000</span>
+<span class="hero-asym-arrow">→</span>
+<span class="hero-asym-paid">$3,950</span>
+</div>
+<div class="hero-asym-note">Same six tokens. Same quantity. 69× below peak.</div>
 </div>
 <div class="hero-numbers">
 <div class="hero-num"><span class="hero-num-value" id="hero-total"><span class="loading-shimmer">$—</span></span><span class="hero-num-label"><span class="live-dot"></span>Portfolio</span></div>
@@ -232,8 +238,7 @@ section{padding:6rem 1.5rem}
 
 <footer>
 <div class="footer-phrase reveal">"Either we regret buying. Or you regret not buying."<br><em>Based on a true story.</em></div>
-<div class="footer-disclaimer">~€130,000 lost between 2022 and 2025. A Swiss broker scam, NFTs, STEPN, leveraged futures, Aave liquidation. That was the tuition. Fund of Regret is the diploma.</div>
-<div class="footer-disclaimer" style="margin-top:0">Fund of Regret doesn't sell signals. Doesn't promise results. Doesn't give financial advice. Doesn't simulate infallibility. Not an investment product. An investment regret.</div>
+<div class="footer-disclaimer">~€130,000 lost between 2022 and 2025. That was the tuition. Fund of Regret is the diploma. No signals. No promises. No financial advice. Not an investment product. An investment regret.</div>
 <div class="footer-links"><a href="https://x.com/fundofregret" target="_blank">X / Twitter</a><a href="https://t.me/fundofregret" target="_blank">Telegram</a><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank">Dropstab</a></div>
 <div class="footer-copy">© 2026 Fund of Regret. Season 1.</div>
 </footer>
