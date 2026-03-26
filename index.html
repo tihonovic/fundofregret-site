@@ -18,15 +18,15 @@
 <meta name="twitter:description" content="Either we regret buying. Or you regret not buying.">
 <meta name="twitter:image" content="https://fundofregret.com/og2.png">
 <meta name="theme-color" content="#050505">
-<link rel="icon" type="image/png" href="/favocon.png">
-<link rel="apple-touch-icon" href="/favocon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#050505;--bg2:#0b0a09;--tx:#e2ddd5;--tx2:#8a8078;--tx3:#433e39;--red:#a63d2f;--green:#4a9d6e;--brd:#1c1916;--hd:'Cormorant Garamond','Georgia',serif;--bd:'Libre Baskerville','Georgia',serif}
-html{background:var(--bg);color:var(--tx);font-family:var(--bd);font-size:16px;line-height:1.75;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+:root{--bg:#050505;--bg2:#0b0a09;--tx:#e2ddd5;--tx2:#b0a89e;--tx3:#7e756c;--red:#a63d2f;--green:#4a9d6e;--brd:#1c1916;--hd:'Cormorant Garamond','Georgia',serif;--bd:'Libre Baskerville','Georgia',serif}
+html{background:var(--bg);color:var(--tx);font-family:var(--bd);font-size:18px;line-height:1.75;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 body{background:var(--bg);overflow-x:hidden;position:relative}
 body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4}
 ::selection{background:rgba(166,61,47,0.25);color:var(--tx)}
@@ -92,7 +92,7 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .episode-pnl{font-family:var(--hd);font-size:0.9rem;font-weight:300;margin-bottom:2rem}
 .episode-meta{display:flex;justify-content:space-between;border-top:1px solid var(--brd);padding-top:1.2rem}
 .episode-meta-item{display:flex;flex-direction:column;gap:0.25rem}
-.episode-meta-label{font-family:var(--hd);font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--tx3)}
+.episode-meta-label{font-family:var(--hd);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--tx3)}
 .episode-meta-val{font-family:var(--hd);font-size:0.85rem;font-weight:300;color:var(--tx2)}
 .last-update{text-align:right;margin-top:1.5rem;font-family:var(--hd);font-size:0.6rem;letter-spacing:0.15em;color:var(--tx3)}
 
@@ -101,12 +101,12 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .archive-item{padding:3rem 0;border-bottom:1px solid var(--brd);transition:all 0.4s;cursor:default}
 .archive-item:first-child{border-top:1px solid var(--brd)}
 .archive-item:hover{padding-left:1.5rem;border-left:2px solid var(--red)}
-.archive-item.locked{opacity:0.3}
-.archive-item.locked:hover{opacity:0.45;padding-left:0;border-left:none}
+.archive-item.locked{opacity:0.4}
+.archive-item.locked:hover{opacity:0.55;padding-left:0;border-left:none}
 .archive-loss{font-family:var(--hd);font-weight:300;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-top:0.5rem}
 .archive-item.climax .archive-title{font-size:clamp(1.5rem,3vw,2rem)}
 .archive-num{font-family:var(--hd);font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--tx3);margin-bottom:0.8rem;display:flex;align-items:center;gap:1rem}
-.archive-status-tag{font-size:0.5rem;letter-spacing:0.15em;padding:0.15rem 0.5rem;border:1px solid var(--brd);color:var(--tx3)}
+.archive-status-tag{font-size:0.6rem;letter-spacing:0.15em;padding:0.15rem 0.5rem;border:1px solid var(--brd);color:var(--tx3)}
 .archive-status-tag.live{border-color:var(--red);color:var(--red)}
 .archive-title{font-family:var(--hd);font-size:clamp(1.3rem,2.5vw,1.7rem);font-weight:300;color:var(--tx);margin-bottom:0.6rem;line-height:1.35}
 .archive-quote{font-family:var(--hd);font-style:italic;font-weight:300;font-size:1rem;color:var(--tx2);line-height:1.6}
@@ -163,10 +163,16 @@ section{padding:6rem 1.5rem}
 .hero-num{flex:1 1 48%;padding:1.5rem 1rem;min-width:0}
 .episodes-grid{grid-template-columns:1fr}
 .episode-card{padding:2rem 1.5rem}
+.episode-ticker{font-size:1.7rem}
+.episode-price{font-size:1.4rem}
+.episode-pnl{font-size:0.85rem}
+.episode-meta-val{font-size:0.8rem}
+.episode-meta-label{font-size:0.6rem}
 .manifesto-phrase{padding-left:1.5rem;font-size:1.2rem;margin:1.5rem 0;padding-top:2rem;padding-bottom:2rem}
 .copy-hint{display:none}
 }
 </style>
+
 </head>
 <body>
 <nav>
@@ -176,7 +182,7 @@ section{padding:6rem 1.5rem}
 <li><a href="#season1" onclick="closeMenu()">Season 1</a></li>
 <li><a href="#archive" onclick="closeMenu()">Archive of Pain</a></li>
 <li><a href="#manifesto" onclick="closeMenu()">Manifesto</a></li>
-<li><a href="#verify" onclick="closeMenu()">Verify</a></li>
+<li><a href="#proof" onclick="closeMenu()">Proof</a></li>
 </ul>
 </nav>
 
@@ -236,8 +242,8 @@ section{padding:6rem 1.5rem}
 
 <div class="section-sep"></div>
 
-<section id="verify">
-<div class="section-header reveal"><div class="section-eyebrow">On-Chain Verification</div><h2 class="section-title">Verify</h2><div class="section-line"></div></div>
+<section id="proof">
+<div class="section-header reveal"><div class="section-eyebrow">On-Chain Verification</div><h2 class="section-title">Proof</h2><div class="section-line"></div></div>
 <div class="verify-content">
 <div class="verify-ens reveal"><div class="verify-ens-name">fundofregret.eth</div><div class="verify-ens-note">ENS profile — all addresses linked</div></div>
 <div class="verify-block reveal"><div class="verify-chain">EVM</div><div class="verify-tokens">EIGEN · STRK · BIO</div><div class="verify-address" onclick="copyAddr(this)">0x2285FfdE4cCDB03913F44b64e00A518Ef3eB13ec<span class="copy-hint">copy</span></div></div>
@@ -250,7 +256,7 @@ section{padding:6rem 1.5rem}
 <footer>
 <div class="footer-phrase reveal">"Either we regret buying. Or you regret not buying."<br><em>Based on a true story.</em></div>
 <div class="footer-disclaimer">~€130,000 lost between 2022 and 2025. That was the tuition. Fund of Regret is the diploma. No signals. No promises. No financial advice. Not an investment product. An investment regret.</div>
-<div class="footer-links"><a href="https://x.com/fundofregret" target="_blank">X / Twitter</a><a href="https://t.me/fundofregret" target="_blank">Telegram</a><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank">Dropstab</a></div>
+<div class="footer-links"><a href="https://x.com/fundofregret" target="_blank" rel="noopener">X / Twitter</a><a href="https://t.me/fundofregret" target="_blank" rel="noopener">Telegram</a><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener">Dropstab</a></div>
 <div class="footer-copy">© 2026 Fund of Regret. Season 1.</div>
 </footer>
 
@@ -326,5 +332,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
 
 document.addEventListener('DOMContentLoaded',()=>{renderArchive();initReveal();fetchPrices();setInterval(fetchPrices,60000)});
 </script>
+
 </body>
 </html>
