@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fund of Regret</title>
+<meta name="description" content="Either we regret buying. Or you regret not buying. A public on-chain portfolio of beaten altcoins, turned into a series. Based on a true story.">
+<meta property="og:title" content="Fund of Regret">
+<meta property="og:description" content="Either we regret buying. Or you regret not buying.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fundofregret.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --bg: #000000;
+    --bg-card: #0a0a0a;
+    --bg-card-hover: #0f0f0f;
+    --text: #e8e4df;
+    --text-dim: #6b6560;
+    --text-muted: #3a3632;
+    --accent-red: #c0392b;
+    --accent-green: #2ecc71;
+    --serif: 'Playfair Display', 'Georgia', serif;
+    --body: 'EB Garamond', 'Georgia', serif;
+    --border: #1a1816;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 18px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background: var(--bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(192, 57, 43, 0.3);
+    color: var(--text);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.4s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .nav-logo .red-dot {
+    color: var(--accent-red);
+    margin-left: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--body);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .nav-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .hero-tagline {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-dim);
+    max-width: 600px;
+    margin-bottom: 4rem;
+    line-height: 1.6;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-value {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  .hero-stat-value.positive { color: var(--accent-green); }
+  .hero-stat-value.negative { color: var(--accent-red); }
+
+  .hero-based {
+    position: absolute;
+    bottom: 3rem;
+    font-family: var(--body);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 8rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: var(--body);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 3rem;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .section-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--text-muted);
+    margin-bottom: 4rem;
+  }
+
+  /* ── SEASON 1 GRID ── */
+  .portfolio-total {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding: 3rem 0;
+  }
+
+  .portfolio-total-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .portfolio-total-value {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .portfolio-total-pnl {
+    font-family: var(--body);
+    font-size: 1.1rem;
+    margin-top: 0.6rem;
+    color: var(--text-dim);
+  }
+
+  .portfolio-total-invested {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2rem 2rem 1.8rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    position: relative;
+  }
+
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: #2a2622;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.8rem;
+  }
+
+  .card-ticker {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  .card-type {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+  }
+
+  .card-price {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.01em;
+  }
+
+  .card-price.loading {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+  }
+
+  .card-pnl {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  .card-meta span {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .card-meta-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .card-meta-value {
+    color: var(--text-dim);
+    font-family: var(--body);
+    font-size: 0.85rem;
+  }
+
+  .positive { color: var(--accent-green); }
+  .negative { color: var(--accent-red); }
+
+  .last-update {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  /* ── ARCHIVE OF PAIN ── */
+  .archive-list {
+    max-width: 720px;
+  }
+
+  .archive-item {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    cursor: default;
+    transition: padding-left 0.3s ease;
+  }
+
+  .archive-item:first-child {
+    padding-top: 0;
+  }
+
+  .archive-item:hover {
+    padding-left: 1rem;
+  }
+
+  .archive-number {
+    font-family: var(--body);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .archive-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .archive-quote {
+    font-family: var(--body);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .archive-date {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  .archive-status {
+    display: inline-block;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    margin-left: 0.8rem;
+  }
+
+  .archive-status.published {
+    color: var(--text-dim);
+    border-color: var(--text-muted);
+  }
+
+  /* ── MANIFESTO ── */
+  .manifesto-content {
+    max-width: 680px;
+  }
+
+  .manifesto-block {
+    margin-bottom: 4rem;
+  }
+
+  .manifesto-block-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.03em;
+  }
+
+  .manifesto-text {
+    font-family: var(--body);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--text-dim);
+  }
+
+  .manifesto-text p {
+    margin-bottom: 0.8rem;
+  }
+
+  .manifesto-phrase {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: var(--text);
+    padding: 2.5rem 0;
+    line-height: 1.5;
+    border-left: 2px solid var(--accent-red);
+    padding-left: 2rem;
+    margin: 3rem 0;
+  }
+
+  .manifesto-rules {
+    list-style: none;
+    counter-reset: rule;
+  }
+
+  .manifesto-rules li {
+    counter-increment: rule;
+    padding: 0.6rem 0;
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    padding-left: 2.5rem;
+    position: relative;
+  }
+
+  .manifesto-rules li::before {
+    content: counter(rule);
+    position: absolute;
+    left: 0;
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    top: 0.7rem;
+  }
+
+  /* ── VERIFY ── */
+  .verify-content {
+    max-width: 720px;
+  }
+
+  .verify-block {
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .verify-block:last-child {
+    border-bottom: none;
+  }
+
+  .verify-chain {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .verify-tokens {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .verify-address {
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    word-break: break-all;
+    line-height: 1.6;
+    padding: 1rem 1.2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    display: block;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    position: relative;
+  }
+
+  .verify-address:hover {
+    border-color: var(--text-muted);
+  }
+
+  .verify-address::after {
+    content: 'click to copy';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--body);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .verify-address:hover::after {
+    opacity: 1;
+  }
+
+  .verify-address.copied::after {
+    content: 'copied';
+    opacity: 1;
+    color: var(--accent-green);
+  }
+
+  .verify-ens {
+    text-align: center;
+    padding: 3rem 0;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .verify-ens-name {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .verify-ens-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .verify-dropstab {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .verify-dropstab a {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .verify-dropstab a:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 6rem 2rem 3rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-phrase {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--text);
+  }
+
+  .footer-copy {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav {
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(20px);
+      padding: 1.5rem;
+      gap: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-mobile-toggle {
+      display: block;
+    }
+
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .hero {
+      padding: 6rem 1.5rem 4rem;
+    }
+
+    .hero-stats {
+      gap: 2rem;
+    }
+
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      padding: 1.5rem;
+    }
+
+    .manifesto-phrase {
+      padding-left: 1.2rem;
+    }
+
+    .verify-address::after {
+      display: none;
+    }
+  }
+
+  /* ── LOADING PULSE ── */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+  }
+
+  .loading-text {
+    animation: pulse 2s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Fund of Regret<span class="red-dot"> ●</span></a>
+  <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <ul class="nav-links">
+    <li><a href="#season1" onclick="closeMenu()">Season 1</a></li>
+    <li><a href="#archive" onclick="closeMenu()">Archive of Pain</a></li>
+    <li><a href="#manifesto" onclick="closeMenu()">Manifesto</a></li>
+    <li><a href="#verify" onclick="closeMenu()">Verify</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="hero-title">Fund of Regret</h1>
+  <p class="hero-tagline">Either we regret buying.<br>Or you regret not buying.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-value" id="hero-total">$—</span>
+      <span class="hero-stat-label">Portfolio Value</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value" id="hero-pnl">—</span>
+      <span class="hero-stat-label">Total P&L</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">6</span>
+      <span class="hero-stat-label">Positions</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-value">$3,950</span>
+      <span class="hero-stat-label">Invested</span>
+    </div>
+  </div>
+  <p class="hero-based">Based on a true story.</p>
+</section>
+
+<!-- SEASON 1 -->
+<section id="season1">
+  <div class="section-label">Act I — Complete</div>
+  <h2 class="section-title">Season 1</h2>
+  <div class="section-divider"></div>
+
+  <div class="portfolio-total">
+    <div class="portfolio-total-label">Total Portfolio Value</div>
+    <div class="portfolio-total-value" id="total-value">
+      <span class="loading-text">Loading...</span>
+    </div>
+    <div class="portfolio-total-pnl" id="total-pnl"></div>
+    <div class="portfolio-total-invested">Invested: $3,950.14</div>
+  </div>
+
+  <div class="cards-grid" id="cards-grid"></div>
+
+  <div class="last-update" id="last-update"></div>
+</section>
+
+<!-- ARCHIVE OF PAIN -->
+<section id="archive">
+  <div class="section-label">From first person</div>
+  <h2 class="section-title">Archive of Pain</h2>
+  <div class="section-divider"></div>
+
+  <div class="archive-list">
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #1</div>
+      <div class="archive-title">Selling the Business</div>
+      <div class="archive-quote">"Money doesn't make you smarter."</div>
+      <div class="archive-date">March 10, 2026 <span class="archive-status published">Published</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #2</div>
+      <div class="archive-title">The Education Chat</div>
+      <div class="archive-quote">"The most dangerous ones don't sell anything."</div>
+      <div class="archive-date">March 15, 2026 <span class="archive-status published">Published</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #3</div>
+      <div class="archive-title">A Seat Was Found</div>
+      <div class="archive-quote">"The perfect scam is when the victim asks for it."</div>
+      <div class="archive-date">March 18, 2026 <span class="archive-status published">Published</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #4</div>
+      <div class="archive-title">The Call and the Transfer</div>
+      <div class="archive-quote">"The universe got tired of hinting."</div>
+      <div class="archive-date">March 22, 2026 <span class="archive-status published">Published</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #5</div>
+      <div class="archive-title">Money Got Stuck</div>
+      <div class="archive-quote">"Everything became obvious. Just a bit too late."</div>
+      <div class="archive-date">March 25, 2026 <span class="archive-status published">Published</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #6</div>
+      <div class="archive-title">End of the Broker</div>
+      <div class="archive-quote">"€60k. At least there's a story to tell."</div>
+      <div class="archive-date">April 2026, Week 1 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #7</div>
+      <div class="archive-title">NFTs at the Peak</div>
+      <div class="archive-quote">"Art turned out to be temporary. The loss didn't."</div>
+      <div class="archive-date">April 2026, Week 2 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #8</div>
+      <div class="archive-title">NFTs — How It Collapsed</div>
+      <div class="archive-quote">"Minus 99%. Tried to sell."</div>
+      <div class="archive-date">April 2026, Week 3 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #9</div>
+      <div class="archive-title">STEPN — Entry</div>
+      <div class="archive-quote">"Walked. Earned. Seemed genius."</div>
+      <div class="archive-date">April 2026, Week 4 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #10</div>
+      <div class="archive-title">STEPN — Exit</div>
+      <div class="archive-quote">"Tokenomics is not a business model."</div>
+      <div class="archive-date">May 2026, Week 1 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #11</div>
+      <div class="archive-title">Bybit — First Trades</div>
+      <div class="archive-quote">"Leverage. Adrenaline. It worked."</div>
+      <div class="archive-date">May 2026, Week 2 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #12</div>
+      <div class="archive-title">Bybit — Night Liquidation</div>
+      <div class="archive-quote">"The market doesn't know you're sleeping."</div>
+      <div class="archive-date">May 2026, Week 3 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #13</div>
+      <div class="archive-title">Aave — ETH Collateral</div>
+      <div class="archive-quote">"The logic was there. Seemed safe."</div>
+      <div class="archive-date">May 2026, Week 4 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #14</div>
+      <div class="archive-title">Aave — Liquidation</div>
+      <div class="archive-quote">"ETH dropped. The protocol worked. I didn't."</div>
+      <div class="archive-date">June 2026, Week 1 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+    <div class="archive-item fade-in">
+      <div class="archive-number">Pain Archive / #15</div>
+      <div class="archive-title">How Fund of Regret Was Born</div>
+      <div class="archive-quote">"$4,000 at the bottom — and why it makes sense."</div>
+      <div class="archive-date">June 2026, Week 2 <span class="archive-status">Upcoming</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="section-label">Constitution</div>
+  <h2 class="section-title">Manifesto</h2>
+  <div class="section-divider"></div>
+
+  <div class="manifesto-content">
+
+    <div class="manifesto-phrase fade-in">
+      Fund of Regret is a public on-chain portfolio of beaten altcoins, turned into a series. Not a fund in the legal sense. A media format, a character, and a public bet — all at once.
+    </div>
+
+    <div class="manifesto-block fade-in">
+      <div class="manifesto-block-title">The Fund buys only what:</div>
+      <ol class="manifesto-rules">
+        <li>The market has already punished severely</li>
+        <li>Still has a clear mechanism or infrastructure logic</li>
+        <li>Causes fatigue, irritation, or ridicule in the crowd</li>
+        <li>Can be defended with a thesis — not just hope</li>
+        <li>Can be held publicly without hiding from the drawdown</li>
+      </ol>
+    </div>
+
+    <div class="manifesto-block fade-in">
+      <div class="manifesto-block-title">The Fund never buys:</div>
+      <ol class="manifesto-rules">
+        <li>Pure hope without a mechanism</li>
+        <li>An asset just because it "dropped a lot"</li>
+        <li>An idea that can't be explained in 2-3 sentences</li>
+        <li>What can't be shown on-chain</li>
+        <li>What you'd be ashamed to enter publicly</li>
+      </ol>
+    </div>
+
+    <div class="manifesto-block fade-in">
+      <div class="manifesto-block-title">The Fund is obligated to:</div>
+      <ol class="manifesto-rules">
+        <li>Show losses as eagerly as profits</li>
+        <li>Acknowledge where the thesis may break</li>
+        <li>Separate irony from self-deception</li>
+        <li>Speak briefly</li>
+        <li>Stay in character</li>
+      </ol>
+    </div>
+
+    <div class="manifesto-phrase fade-in">
+      Hope is not a thesis.
+    </div>
+
+    <div class="manifesto-phrase fade-in">
+      The position is public. So is the mistake.
+    </div>
+
+    <div class="manifesto-phrase fade-in">
+      Not financial advice. Financial regret.
+    </div>
+
+  </div>
+</section>
+
+<!-- VERIFY -->
+<section id="verify">
+  <div class="section-label">On-chain verification</div>
+  <h2 class="section-title">Verify</h2>
+  <div class="section-divider"></div>
+
+  <div class="verify-content">
+
+    <div class="verify-ens fade-in">
+      <div class="verify-ens-name">fundofregret.eth</div>
+      <div class="verify-ens-note">ENS profile — all addresses linked</div>
+    </div>
+
+    <div class="verify-block fade-in">
+      <div class="verify-chain">EVM</div>
+      <div class="verify-tokens">EIGEN · STRK · BIO</div>
+      <div class="verify-address" onclick="copyAddress(this)">0x2285FfdE4cCDB03913F44b64e00A518Ef3eB13ec</div>
+    </div>
+
+    <div class="verify-block fade-in">
+      <div class="verify-chain">Solana</div>
+      <div class="verify-tokens">IO · ELIZAOS</div>
+      <div class="verify-address" onclick="copyAddress(this)">6gB3PBNtTe9us9r6cQHiqiDjGs1CT5cwgqLpymGXKahE</div>
+    </div>
+
+    <div class="verify-block fade-in">
+      <div class="verify-chain">Celestia</div>
+      <div class="verify-tokens">TIA</div>
+      <div class="verify-address" onclick="copyAddress(this)">celestia177j80z95aes8a59ghcy4h7ryh5f7qad5wlezs5</div>
+    </div>
+
+    <div class="verify-dropstab fade-in">
+      <a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener">View on Dropstab →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-phrase">
+    "Either we regret buying. Or you regret not buying."<br>
+    <em>Based on a true story.</em>
+  </div>
+  <div class="footer-disclaimer">
+    Fund of Regret doesn't sell signals. Doesn't promise results. Doesn't give financial advice. Doesn't simulate infallibility. Not an investment product. An investment regret.
+  </div>
+  <div class="footer-links">
+    <a href="https://x.com/fundofregret" target="_blank" rel="noopener">X / Twitter</a>
+    <a href="https://t.me/fundofregret" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener">Dropstab</a>
+  </div>
+  <div class="footer-copy">© 2026 Fund of Regret. Season 1.</div>
+</footer>
+
+<script>
+// ── PORTFOLIO DATA ──
+const POSITIONS = [
+  { ticker: 'EIGEN', type: 'Restaking', qty: 3951.64, entry: 0.2024, cost: 799.81, geckoId: 'eigenlayer' },
+  { ticker: 'TIA', type: 'Modular', qty: 2205.32, entry: 0.3401, cost: 750.02, geckoId: 'celestia' },
+  { ticker: 'STRK', type: 'L2 ZK', qty: 16160.96, entry: 0.04022, cost: 649.99, geckoId: 'starknet' },
+  { ticker: 'IO', type: 'DePIN + AI', qty: 5405.00, entry: 0.1107, cost: 598.33, geckoId: 'io-net' },
+  { ticker: 'BIO', type: 'DeSci', qty: 25658.61, entry: 0.021435, cost: 549.99, geckoId: 'bio-protocol' },
+  { ticker: 'ELIZAOS', type: 'AI Framework', qty: 482820.00, entry: 0.0012427, cost: 600.00, geckoId: 'elizaos' }
+];
+
+const TOTAL_INVESTED = 3950.14;
+
+// ── FORMAT HELPERS ──
+function fmt(n, decimals = 2) {
+  if (n >= 1) return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  if (n >= 0.01) return n.toFixed(4);
+  if (n >= 0.001) return n.toFixed(5);
+  return n.toFixed(7);
+}
+
+function fmtUSD(n) {
+  return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function fmtPct(n) {
+  const sign = n >= 0 ? '+' : '';
+  return sign + n.toFixed(1) + '%';
+}
+
+function fmtQty(n) {
+  if (n >= 10000) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+  return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+}
+
+// ── RENDER CARDS ──
+function renderCards(prices) {
+  const grid = document.getElementById('cards-grid');
+  grid.innerHTML = '';
+
+  let totalValue = 0;
+
+  POSITIONS.forEach(pos => {
+    const price = prices ? prices[pos.geckoId]?.usd : null;
+    const value = price ? pos.qty * price : null;
+    const pnl = value ? value - pos.cost : null;
+    const pnlPct = value ? ((value - pos.cost) / pos.cost) * 100 : null;
+
+    if (value) totalValue += value;
+
+    const isPositive = pnl !== null && pnl >= 0;
+    const pnlClass = pnl !== null ? (isPositive ? 'positive' : 'negative') : '';
+
+    const card = document.createElement('div');
+    card.className = 'card fade-in visible';
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="card-ticker">${pos.ticker}</div>
+        <div class="card-type">${pos.type}</div>
+      </div>
+      <div class="card-price ${price ? '' : 'loading'}">
+        ${price ? '$' + fmt(price) : '<span class="loading-text">—</span>'}
+      </div>
+      <div class="card-pnl ${pnlClass}">
+        ${pnl !== null ? fmtUSD(pnl) + ' (' + fmtPct(pnlPct) + ')' : ''}
+      </div>
+      <div class="card-meta">
+        <span>
+          <span class="card-meta-label">Quantity</span>
+          <span class="card-meta-value">${fmtQty(pos.qty)}</span>
+        </span>
+        <span>
+          <span class="card-meta-label">Entry</span>
+          <span class="card-meta-value">$${fmt(pos.entry)}</span>
+        </span>
+        <span>
+          <span class="card-meta-label">Value</span>
+          <span class="card-meta-value">${value ? fmtUSD(value) : '—'}</span>
+        </span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Update totals
+  if (totalValue > 0) {
+    const totalPnl = totalValue - TOTAL_INVESTED;
+    const totalPnlPct = ((totalValue - TOTAL_INVESTED) / TOTAL_INVESTED) * 100;
+    const isPos = totalPnl >= 0;
+    const cls = isPos ? 'positive' : 'negative';
+
+    document.getElementById('total-value').innerHTML = `<span class="${cls}">${fmtUSD(totalValue)}</span>`;
+    document.getElementById('total-pnl').innerHTML = `<span class="${cls}">${fmtUSD(totalPnl)} (${fmtPct(totalPnlPct)})</span>`;
+
+    document.getElementById('hero-total').textContent = fmtUSD(totalValue);
+    document.getElementById('hero-total').className = 'hero-stat-value ' + cls;
+
+    document.getElementById('hero-pnl').textContent = fmtPct(totalPnlPct);
+    document.getElementById('hero-pnl').className = 'hero-stat-value ' + cls;
+  }
+}
+
+// ── FETCH PRICES ──
+async function fetchPrices() {
+  const ids = POSITIONS.map(p => p.geckoId).join(',');
+  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`;
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    renderCards(data);
+    document.getElementById('last-update').textContent = 'Last update: ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  } catch (e) {
+    console.error('CoinGecko fetch failed:', e);
+    // Show cards without prices on first load
+    if (!document.querySelector('.card')) {
+      renderCards(null);
+      document.getElementById('last-update').textContent = 'Live data unavailable — retrying...';
+    }
+  }
+}
+
+// ── COPY ADDRESS ──
+function copyAddress(el) {
+  const text = el.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+
+// ── CLOSE MOBILE MENU ──
+function closeMenu() {
+  document.querySelector('.nav-links').classList.remove('open');
+}
+
+// ── SCROLL FADE IN ──
+function initFadeIn() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
+
+// ── SMOOTH SCROLL FOR NAV ──
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  initFadeIn();
+  fetchPrices();
+  setInterval(fetchPrices, 60000);
+});
+</script>
+
+</body>
+</html>
