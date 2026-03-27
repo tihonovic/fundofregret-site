@@ -328,7 +328,7 @@ list.appendChild(div);});}
 
 async function fetchPrices(){
 const ids=POSITIONS.map(p=>p.geckoId).join(',');
-try{const res=await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`);
+try{const res=await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&x_cg_demo_api_key=CG-caiMH3iBXrChiT1qaGgyMrV7`);
 if(!res.ok)throw new Error('API');const data=await res.json();renderCards(data);
 document.getElementById('last-update').innerHTML=`<span class="live-dot"></span> ${new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'})}`;
 }catch(e){console.error('CoinGecko:',e);if(!document.querySelector('.episode-card')){renderCards(null);document.getElementById('last-update').textContent='Reconnecting...';}}}
