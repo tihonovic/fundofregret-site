@@ -85,8 +85,8 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .portfolio-invested{font-family:var(--hd);font-size:0.82rem;color:var(--tx2);margin-top:1rem;letter-spacing:0.08em}
 
 .episodes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--brd);border:1px solid var(--brd)}
-.episode-card{background:var(--bg);padding:2.5rem;transition:background 0.4s}
-.episode-card:hover{background:var(--bg2)}
+.episode-card{background:var(--bg);padding:2.5rem;transition:background 0.4s,transform 0.35s,box-shadow 0.35s}
+.episode-card:hover{background:var(--bg2);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.55)}
 .episode-card.in-profit{background:var(--bg2);border-left:2px solid var(--green)}
 .episode-card.in-profit .episode-num::after{content:'▲';margin-left:0.5rem;color:var(--green);font-size:0.5rem}
 .episode-num{font-family:var(--hd);font-size:0.6rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--tx3);margin-bottom:1.5rem}
@@ -105,8 +105,8 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .archive-item{padding:3rem 0;border-bottom:1px solid var(--brd);transition:all 0.4s;cursor:default}
 .archive-item:first-child{border-top:1px solid var(--brd)}
 .archive-item:hover{padding-left:1.5rem;border-left:2px solid var(--red)}
-.archive-item.locked{opacity:0.4}
-.archive-item.locked:hover{opacity:0.55;padding-left:0;border-left:none}
+.archive-item.locked{opacity:0.28}
+.archive-item.locked:hover{opacity:0.42;padding-left:0;border-left:none}
 .archive-loss{font-family:var(--hd);font-weight:300;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-top:0.5rem}
 .archive-item.climax .archive-title{font-size:clamp(1.5rem,3vw,2rem)}
 .archive-num{font-family:var(--hd);font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--tx3);margin-bottom:0.8rem;display:flex;align-items:center;gap:1rem}
@@ -139,7 +139,7 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .copy-hint{position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);font-family:var(--hd);font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--tx3);opacity:0;transition:opacity 0.3s}
 .verify-address:hover .copy-hint{opacity:1}
 .verify-address.copied .copy-hint{opacity:1;color:var(--green)}
-.verify-dropstab{text-align:center;padding:3rem 0}
+.verify-dropstab{text-align:center;padding:1.5rem 0 2rem}
 .verify-dropstab a{font-family:var(--hd);font-size:0.85rem;font-weight:300;color:var(--tx2);text-decoration:none;letter-spacing:0.08em;border-bottom:1px solid var(--brd);padding-bottom:3px;transition:all 0.3s}
 .verify-dropstab a:hover{color:var(--tx);border-color:var(--red)}
 
@@ -167,14 +167,17 @@ section{padding:5rem 1.5rem}
 .hero-numbers{flex-direction:row;flex-wrap:wrap;width:100%}
 .hero-num{flex:1 1 48%;padding:1.5rem 1rem;min-width:0}
 .section-header{margin-bottom:3.5rem}
+.portfolio-summary{margin-bottom:2rem}
 .episodes-grid{grid-template-columns:1fr}
 .episode-card{padding:2rem 1.5rem}
+.episode-card:hover{transform:none;box-shadow:none}
 .episode-ticker{font-size:1.7rem}
 .episode-price{font-size:1.4rem}
 .episode-pnl{font-size:0.88rem}
 .episode-meta-val{font-size:0.85rem}
 .episode-meta-label{font-size:0.62rem}
 .manifesto-phrase{padding-left:1.5rem;font-size:1.2rem;margin:1.5rem 0;padding-top:2rem;padding-bottom:2rem}
+.verify-address{font-size:0.78rem;line-height:1.75;padding:1rem 1.2rem}
 footer{padding:5rem 1.5rem 3rem}
 .copy-hint{display:none}
 }
@@ -204,7 +207,7 @@ footer{padding:5rem 1.5rem 3rem}
 <span class="hero-asym-arrow">→</span>
 <span class="hero-asym-paid">$3,950</span>
 </div>
-<div class="hero-asym-note">Same six tokens. Same quantity. 69× below peak.</div>
+<div class="hero-asym-note">Same six tokens. Same quantity. 69×&nbsp;below&nbsp;peak.</div>
 </div>
 <div class="hero-numbers">
 <div class="hero-num"><span class="hero-num-value" id="hero-total"><span class="loading-shimmer">$—</span></span><span class="hero-num-label"><span class="live-dot"></span>Portfolio</span></div>
