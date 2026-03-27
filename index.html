@@ -335,6 +335,8 @@ function initReveal(){const obs=new IntersectionObserver(entries=>{entries.forEa
 
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const href=this.getAttribute('href');if(href==='#')return;e.preventDefault();const t=document.querySelector(href);if(t)window.scrollTo({top:t.offsetTop-80,behavior:'smooth'})})});
 
+document.addEventListener('click',function(e){const nav=document.querySelector('.nav-links');const toggle=document.querySelector('.nav-toggle');if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&!toggle.contains(e.target)){nav.classList.remove('open');}});
+
 document.addEventListener('DOMContentLoaded',()=>{renderArchive();initReveal();fetchPrices();setInterval(fetchPrices,60000)});
 </script>
 
