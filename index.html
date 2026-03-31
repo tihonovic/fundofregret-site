@@ -161,6 +161,8 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 /* ── ARCHIVE READER OVERLAY ── */
 .archive-overlay{position:fixed;inset:0;background:var(--bg);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.5s ease;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .archive-overlay.open{opacity:1;pointer-events:all}
+/* Close band: desktop hidden — backdrop handles it. Mobile: fixed tap zone at top */
+.reader-close-band{display:none}
 .reader-close{position:fixed;top:2rem;right:2.5rem;font-family:var(--hd);font-size:0.6rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--tx2);cursor:pointer;z-index:201;transition:color 0.3s,border-color 0.3s;background:var(--bg);border:1px solid var(--brd);padding:0.65rem 1.2rem;line-height:1}
 .reader-close:hover{color:var(--tx);border-color:var(--tx3)}
 .reader-wrap{max-width:620px;margin:0 auto;padding:8rem 2rem 8rem}
@@ -267,7 +269,9 @@ footer{padding:5rem 1.5rem 3rem}
 .reader-nav{flex-direction:column;gap:2rem;align-items:center}
 .reader-nav-btn{text-align:center}
 .reader-nav-btn.next{text-align:center}
-.reader-close{top:1.5rem;right:1.5rem}
+.reader-close{top:0;right:0;min-height:44px;min-width:88px;display:flex;align-items:center;justify-content:center;border-top:none;border-right:none;border-radius:0}
+/* Dedicated close band: fixed 60px at top, transparent, tappable */
+.archive-overlay.open .reader-close-band{display:block;position:fixed;top:0;left:0;right:88px;height:60px;z-index:199;cursor:pointer}
 }
 </style>
 </head>
@@ -407,6 +411,7 @@ footer{padding:5rem 1.5rem 3rem}
 <!-- ── ARCHIVE READING OVERLAY ── -->
 <div class="archive-overlay" id="archive-overlay" role="dialog" aria-modal="true" aria-label="Archive file">
 <button class="reader-close" onclick="closeArchiveFile()" aria-label="Close">Close</button>
+<div class="reader-close-band" onclick="closeArchiveFile()" aria-hidden="true"></div>
 <div class="reader-wrap" id="reader-wrap"></div>
 </div>
 
@@ -672,9 +677,9 @@ renderCards(null);
 initReveal();
 fetchPrices();
 setInterval(fetchPrices,60000);
-/* Backdrop click closes reader — only fires when clicking the bare overlay, not content */
+/* Backdrop click: desktop only — mobile uses the dedicated close band */
 document.getElementById('archive-overlay').addEventListener('click',function(e){
-if(e.target===this)closeArchiveFile();});});
+if(window.innerWidth>768&&e.target===this)closeArchiveFile();});});
 </script>
 </body>
 </html>
