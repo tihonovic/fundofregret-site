@@ -256,9 +256,12 @@ section{padding:5rem 1.5rem}
 .latest-inner{flex-direction:column;align-items:flex-start;gap:1rem;padding:1.8rem}
 .latest-sep{display:none}
 .latest-right{align-self:flex-end}
+.hero-eyebrow{font-size:0.76rem;letter-spacing:0.18em;color:#9e958c;margin-bottom:2.5rem}
 .manifesto-phrase{padding-left:1.5rem;font-size:1.2rem;margin:1.5rem 0;padding-top:2rem;padding-bottom:2rem}
 footer{padding:5rem 1.5rem 3rem}
 .copy-hint{display:none}
+#proof .section-header{margin-bottom:2.5rem}
+.verify-ens{padding:2.5rem 0;margin-bottom:2rem}
 .reader-wrap{padding:6rem 1.5rem 5rem}
 .reader-title{font-size:clamp(1.8rem,6vw,2.8rem)}
 .reader-nav{flex-direction:column;gap:2rem;align-items:center}
@@ -389,7 +392,7 @@ footer{padding:5rem 1.5rem 3rem}
 <div class="verify-address" onclick="copyAddr(this)">celestia177j80z95aes8a59ghcy4h7ryh5f7qad5wlezs5<span class="copy-hint">copy</span></div>
 <a class="verify-explorer" href="https://www.mintscan.io/celestia/address/celestia177j80z95aes8a59ghcy4h7ryh5f7qad5wlezs5" target="_blank" rel="noopener">Mintscan <svg class="explorer-arrow" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 7L7 1M7 1H2.5M7 1V5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
-<div class="verify-dropstab reveal"><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener">View Portfolio on Dropstab →</a></div>
+<div class="verify-dropstab reveal"><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem">View Portfolio on Dropstab <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0;opacity:0.6"><path d="M1 7L7 1M7 1H2.5M7 1V5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
 </div>
 </section>
 
@@ -411,29 +414,29 @@ footer{padding:5rem 1.5rem 3rem}
 /* ── DATA ── */
 const POSITIONS=[
 {ticker:'EIGEN',type:'Restaking',qty:3951.64,entry:0.2024,cost:799.81,geckoId:'eigenlayer',
- what:'EigenLayer\'s native token. Lets ETH validators extend cryptoeconomic security to other protocols — a new primitive for Ethereum infrastructure. Live on mainnet.',
+ what:'EigenLayer\'s native token. Lets ETH validators extend cryptoeconomic security to other protocols — a new primitive for Ethereum infrastructure.',
  why:'Airdrop disappointment destroyed the price. The protocol kept shipping. We entered when the selling was reflexive, not analytical.',
  breaks:'Restaking adoption stalls. Competing protocols capture TVL. Unlock schedule sustains sell pressure past any demand floor.'},
 {ticker:'TIA',type:'Modular',qty:2205.32,entry:0.3401,cost:750.02,geckoId:'celestia',
- what:'Celestia\'s native token. Provides data availability for modular chains — the layer rollups use to publish and verify data without Ethereum\'s cost.',
+ what:'Celestia\'s native token. Data availability for modular chains — the layer rollups use to publish and verify data without Ethereum\'s cost.',
  why:'DA is an engineering constraint, not a narrative. Celestia is the only purpose-built solution at scale. Down 98%+ from ATH. Not the thesis breaking — the thesis beginning.',
  breaks:'Ethereum blob capacity proves sufficient. Celestia\'s rollup ecosystem fails to grow. A technically superior DA layer displaces it.'},
 {ticker:'STRK',type:'L2 ZK',qty:16160.96,entry:0.04022,cost:649.99,geckoId:'starknet',
- what:'Starknet\'s native token. ZK-rollup on Ethereum — validity proofs for every transaction, Cairo VM, years of active development.',
- why:'ZK proofs are mathematics, not speculation. The token was crushed by early airdrop distribution. The protocol kept shipping. We entered when the selling was about unlocks, not fundamentals.',
- breaks:'ZK proving costs don\'t reach parity with optimistic rollups. OP Stack dominates L2 market share. Cairo adoption fails against Solidity-native alternatives.'},
+ what:'Starknet\'s native token. ZK-rollup on Ethereum — validity proofs for every transaction, Cairo VM, active since 2020.',
+ why:'ZK proofs are mathematics, not speculation. Token crushed by early airdrop distribution. We entered when the selling was about unlocks, not fundamentals.',
+ breaks:'ZK proving costs don\'t reach parity with optimistic rollups. OP Stack dominates L2 share. Cairo fails against Solidity-native alternatives.'},
 {ticker:'IO',type:'DePIN + AI',qty:5405.00,entry:0.1107,cost:598.33,geckoId:'io',
- what:'io.net\'s token. Decentralized GPU marketplace — aggregates idle compute for AI inference and training. Real supply, real demand, live network.',
+ what:'io.net\'s token. Decentralized GPU marketplace — idle compute aggregated for AI inference and training.',
  why:'GPU scarcity is a present constraint, not a forecast. io.net built the marketplace. Token fell with DePIN sentiment. The supply-demand gap didn\'t.',
- breaks:'Hyperscalers cut GPU prices fast enough to close the arbitrage. Network reliability fails enterprise thresholds. DePIN sentiment collapse becomes self-fulfilling.'},
+ breaks:'Hyperscalers cut GPU prices fast enough to close the arbitrage. Network reliability fails enterprise thresholds. DePIN collapse becomes self-fulfilling.'},
 {ticker:'BIO',type:'DeSci',qty:25658.61,entry:0.021435,cost:549.99,geckoId:'bio-protocol',
- what:'BIO Protocol\'s token. Infrastructure for decentralized science — funding, IP tokenization, and governance for biotech research that can\'t access traditional capital.',
- why:'Smallest position. Most experimental thesis. Biotech funding is incumbency-captured. BIO creates a parallel path. We bought early and sized accordingly.',
- breaks:'No funded biotech IP generates clinical returns. Regulatory environments close around tokenized research IP. DeSci fails to attract credible scientists.'},
+ what:'BIO Protocol\'s token. Infrastructure for decentralized science — funding, IP tokenization, governance for biotech research that can\'t access traditional capital.',
+ why:'Smallest position. Most experimental thesis. Biotech funding is incumbency-captured. BIO creates a parallel path. Bought early and sized accordingly.',
+ breaks:'No funded biotech IP generates clinical returns. Regulatory environments close around tokenized IP. DeSci fails to attract credible scientists.'},
 {ticker:'ELIZAOS',type:'AI Framework',qty:482820.00,entry:0.0012427,cost:600.00,geckoId:'elizaos',
- what:'ElizaOS token. Open-source framework for autonomous AI agents — multi-platform, multi-model, largest developer fork count in the AI agent space.',
- why:'Agents need infrastructure before they need tokens. ElizaOS had the broadest developer adoption at purchase. Token crashed from its narrative peak. The framework kept accumulating forks.',
- breaks:'Major AI labs release competing frameworks and absorb developer attention. AI agent use cases prove shallow. ElizaOS fails to generate protocol-level revenue or retention.'}
+ what:'ElizaOS token. Open-source framework for autonomous AI agents — multi-platform, multi-model, with the highest developer fork count in the AI agent space at entry.',
+ why:'Agents need infrastructure before tokens. ElizaOS had the broadest developer base at purchase. Token crashed from narrative peak. The framework kept accumulating forks.',
+ breaks:'Major AI labs release competing frameworks and absorb developer attention. Agent use cases prove shallow. ElizaOS fails to generate protocol-level revenue or retention.'}
 ];
 
 const ARCHIVE=[
@@ -665,6 +668,7 @@ document.addEventListener('click',function(e){const nav=document.querySelector('
 /* ── INIT ── */
 document.addEventListener('DOMContentLoaded',()=>{
 renderArchive();
+renderCards(null);
 initReveal();
 fetchPrices();
 setInterval(fetchPrices,60000);
