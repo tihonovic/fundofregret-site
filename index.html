@@ -50,7 +50,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.6rem 3rem;display:
 
 /* ── HERO ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10rem 2rem 6rem;position:relative}
-.hero-object{width:clamp(120px,16vw,200px);height:auto;margin-bottom:3rem;opacity:0.92;display:block}
 .hero-eyebrow{font-family:var(--hd);font-size:0.7rem;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--tx3);margin-bottom:3rem}
 .hero-title{font-family:var(--hd);font-size:clamp(3.2rem,8vw,7.5rem);font-weight:300;letter-spacing:-0.01em;line-height:1.05;color:var(--tx);margin-bottom:2.5rem}
 .hero-tagline{font-family:var(--hd);font-style:italic;font-weight:300;font-size:clamp(1.1rem,2.2vw,1.5rem);color:var(--tx2);max-width:500px;line-height:1.7;margin-bottom:4rem}
@@ -158,8 +157,8 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 /* ── ARCHIVE READER OVERLAY ── */
 .archive-overlay{position:fixed;inset:0;background:var(--bg);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.5s ease;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .archive-overlay.open{opacity:1;pointer-events:all}
-.reader-close{position:fixed;top:2rem;right:2.5rem;font-family:var(--hd);font-size:1.2rem;font-weight:300;color:var(--tx3);cursor:pointer;letter-spacing:0.1em;text-decoration:none;z-index:201;transition:color 0.3s;background:none;border:none;padding:0.5rem}
-.reader-close:hover{color:var(--tx)}
+.reader-close{position:fixed;top:2rem;right:2.5rem;font-family:var(--hd);font-size:0.6rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;color:var(--tx2);cursor:pointer;z-index:201;transition:color 0.3s,border-color 0.3s;background:var(--bg);border:1px solid var(--brd);padding:0.65rem 1.2rem;line-height:1}
+.reader-close:hover{color:var(--tx);border-color:var(--tx3)}
 .reader-wrap{max-width:620px;margin:0 auto;padding:8rem 2rem 8rem}
 .reader-eyebrow{font-family:var(--hd);font-size:0.6rem;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--tx3);margin-bottom:1rem;display:flex;align-items:center;gap:1.5rem}
 .reader-eyebrow-line{height:1px;background:var(--brd);flex:1}
@@ -171,13 +170,13 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .reader-body p:last-child{margin-bottom:0}
 .reader-closing{font-family:var(--hd);font-style:italic;font-weight:300;font-size:1.15rem;color:var(--tx3);margin-top:3rem;padding-top:3rem;border-top:1px solid var(--brd);text-align:center;letter-spacing:0.05em}
 .reader-nav{display:flex;justify-content:space-between;align-items:center;margin-top:6rem;padding-top:3rem;border-top:1px solid var(--brd)}
-.reader-nav-btn{font-family:var(--hd);font-size:0.72rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx3);cursor:pointer;transition:color 0.3s;background:none;border:none;padding:0;display:flex;flex-direction:column;gap:0.4rem}
-.reader-nav-btn:hover{color:var(--tx2)}
-.reader-nav-btn:disabled{opacity:0.25;cursor:default}
-.reader-nav-label{font-size:0.55rem;letter-spacing:0.3em;color:var(--tx3)}
-.reader-nav-title{font-size:0.8rem}
+.reader-nav-btn{font-family:var(--hd);font-size:0.72rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--tx2);cursor:pointer;transition:color 0.3s;background:none;border:none;padding:0;display:flex;flex-direction:column;gap:0.5rem}
+.reader-nav-btn:hover{color:var(--tx)}
+.reader-nav-btn:disabled{opacity:0.2;cursor:default}
+.reader-nav-label{font-size:0.58rem;letter-spacing:0.28em;color:var(--tx3)}
+.reader-nav-title{font-size:0.82rem;color:var(--tx2)}
 .reader-nav-btn.next{text-align:right}
-.reader-nav-mid{font-family:var(--hd);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--tx3)}
+.reader-nav-mid{font-family:var(--hd);font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--tx3)}
 
 /* ── MANIFESTO ── */
 .manifesto-content{max-width:650px}
@@ -204,8 +203,9 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .copy-hint{position:absolute;right:1.2rem;top:50%;transform:translateY(-50%);font-family:var(--hd);font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--tx3);opacity:0;transition:opacity 0.3s}
 .verify-address:hover .copy-hint{opacity:1}
 .verify-address.copied .copy-hint{opacity:1;color:var(--green)}
-.verify-explorer{display:inline-block;margin-top:0.3rem;font-family:var(--hd);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--tx3);text-decoration:none;border-bottom:1px solid var(--brd);padding-bottom:2px;transition:all 0.3s}
+.verify-explorer{display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.3rem;font-family:var(--hd);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--tx3);text-decoration:none;border-bottom:1px solid var(--brd);padding-bottom:2px;transition:all 0.3s}
 .verify-explorer:hover{color:var(--tx2);border-color:var(--tx3)}
+.explorer-arrow{flex-shrink:0;vertical-align:middle;opacity:0.7}
 .verify-dropstab{text-align:center;padding:3rem 0}
 .verify-dropstab a{font-family:var(--hd);font-size:0.85rem;font-weight:300;color:var(--tx2);text-decoration:none;letter-spacing:0.08em;border-bottom:1px solid var(--brd);padding-bottom:3px;transition:all 0.3s}
 .verify-dropstab a:hover{color:var(--tx);border-color:var(--red)}
@@ -233,7 +233,6 @@ nav{padding:1.2rem 1.5rem}
 .nav-toggle{display:block}
 section{padding:5rem 1.5rem}
 .hero{padding:7rem 1.5rem 6rem}
-.hero-object{width:clamp(90px,22vw,140px);margin-bottom:2rem}
 .hero-asymmetry{margin-bottom:3rem}
 .hero-numbers{flex-direction:row;flex-wrap:wrap;width:100%}
 .hero-num{flex:1 1 48%;padding:1.5rem 1rem;min-width:0}
@@ -278,8 +277,6 @@ footer{padding:5rem 1.5rem 3rem}
 
 <!-- ── HERO ── -->
 <section class="hero">
-<!-- Upload hero-object.png to your repo root to activate this visual -->
-<img src="/hero-object.png" class="hero-object" alt="" onerror="this.style.display='none'" aria-hidden="true">
 <div class="hero-eyebrow">Season 1 · On-Chain Verified · fundofregret.eth</div>
 <h1 class="hero-title">Fund of<br>Regret</h1>
 <p class="hero-tagline">Either we regret buying.<br>Or you regret not buying.</p>
@@ -367,19 +364,19 @@ footer{padding:5rem 1.5rem 3rem}
 <div class="verify-chain">EVM</div>
 <div class="verify-tokens">EIGEN · STRK · BIO</div>
 <div class="verify-address" onclick="copyAddr(this)">0x2285FfdE4cCDB03913F44b64e00A518Ef3eB13ec<span class="copy-hint">copy</span></div>
-<a class="verify-explorer" href="https://etherscan.io/address/0x2285FfdE4cCDB03913F44b64e00A518Ef3eB13ec" target="_blank" rel="noopener">View on Etherscan ↗</a>
+<a class="verify-explorer" href="https://etherscan.io/address/0x2285FfdE4cCDB03913F44b64e00A518Ef3eB13ec" target="_blank" rel="noopener">Etherscan <svg class="explorer-arrow" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 7L7 1M7 1H2.5M7 1V5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
 <div class="verify-block reveal">
 <div class="verify-chain">Solana</div>
 <div class="verify-tokens">IO · ELIZAOS</div>
 <div class="verify-address" onclick="copyAddr(this)">6gB3PBNtTe9us9r6cQHiqiDjGs1CT5cwgqLpymGXKahE<span class="copy-hint">copy</span></div>
-<a class="verify-explorer" href="https://solscan.io/account/6gB3PBNtTe9us9r6cQHiqiDjGs1CT5cwgqLpymGXKahE" target="_blank" rel="noopener">View on Solscan ↗</a>
+<a class="verify-explorer" href="https://solscan.io/account/6gB3PBNtTe9us9r6cQHiqiDjGs1CT5cwgqLpymGXKahE" target="_blank" rel="noopener">Solscan <svg class="explorer-arrow" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 7L7 1M7 1H2.5M7 1V5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
 <div class="verify-block reveal">
 <div class="verify-chain">Celestia</div>
 <div class="verify-tokens">TIA</div>
 <div class="verify-address" onclick="copyAddr(this)">celestia177j80z95aes8a59ghcy4h7ryh5f7qad5wlezs5<span class="copy-hint">copy</span></div>
-<a class="verify-explorer" href="https://www.mintscan.io/celestia/address/celestia177j80z95aes8a59ghcy4h7ryh5f7qad5wlezs5" target="_blank" rel="noopener">View on Mintscan ↗</a>
+<a class="verify-explorer" href="https://www.mintscan.io/celestia/address/celestia177j80z95aes8a59ghcy4h7ryh5f7qad5wlezs5" target="_blank" rel="noopener">Mintscan <svg class="explorer-arrow" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 7L7 1M7 1H2.5M7 1V5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 </div>
 <div class="verify-dropstab reveal"><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener">View Portfolio on Dropstab →</a></div>
 </div>
@@ -395,7 +392,7 @@ footer{padding:5rem 1.5rem 3rem}
 
 <!-- ── ARCHIVE READING OVERLAY ── -->
 <div class="archive-overlay" id="archive-overlay" role="dialog" aria-modal="true" aria-label="Archive file">
-<button class="reader-close" onclick="closeArchiveFile()" aria-label="Close">&times; Close</button>
+<button class="reader-close" onclick="closeArchiveFile()" aria-label="Close">Close</button>
 <div class="reader-wrap" id="reader-wrap"></div>
 </div>
 
@@ -403,29 +400,29 @@ footer{padding:5rem 1.5rem 3rem}
 /* ── DATA ── */
 const POSITIONS=[
 {ticker:'EIGEN',type:'Restaking',qty:3951.64,entry:0.2024,cost:799.81,geckoId:'eigenlayer',
- what:'EigenLayer\'s native restaking token. The protocol allows ETH validators to extend their security guarantees to other networks — a new primitive for Ethereum infrastructure.',
- why:'EigenLayer is real, deployed infrastructure with meaningful developer adoption. The token absorbed the full force of airdrop disappointment and unlock schedules. The protocol kept building. The market kept punishing. We called it an entry point.',
- breaks:'If restaking adoption plateaus before the token finds a utility floor. If competing restaking protocols accumulate TVL faster. If the vesting schedule creates sustained sell pressure with no absorbing demand.'},
+ what:'EigenLayer\'s native token. Lets ETH validators extend cryptoeconomic security to other protocols — a new primitive for Ethereum infrastructure. Live on mainnet.',
+ why:'Airdrop disappointment destroyed the price. The protocol kept shipping. We entered when the selling was reflexive, not analytical.',
+ breaks:'Restaking adoption stalls. Competing protocols capture TVL. Unlock schedule sustains sell pressure past any demand floor.'},
 {ticker:'TIA',type:'Modular',qty:2205.32,entry:0.3401,cost:750.02,geckoId:'celestia',
- what:'Celestia\'s native token. The network provides data availability — a foundational layer for modular blockchains to publish and verify transaction data cheaply and at scale.',
- why:'Data availability is not a narrative. It is an engineering problem that modular chains have to solve. Celestia built the most credible specialized solution. The token is down 98%+ from ATH. That is not the thesis breaking. That is the thesis beginning.',
- breaks:'If Ethereum\'s own blob capacity proves sufficient DA for the ecosystem. If Celestia\'s rollup ecosystem fails to grow beyond its current base. If a technically superior DA layer displaces it.'},
+ what:'Celestia\'s native token. Provides data availability for modular chains — the layer rollups use to publish and verify data without Ethereum\'s cost.',
+ why:'DA is an engineering constraint, not a narrative. Celestia is the only purpose-built solution at scale. Down 98%+ from ATH. Not the thesis breaking — the thesis beginning.',
+ breaks:'Ethereum blob capacity proves sufficient. Celestia\'s rollup ecosystem fails to grow. A technically superior DA layer displaces it.'},
 {ticker:'STRK',type:'L2 ZK',qty:16160.96,entry:0.04022,cost:649.99,geckoId:'starknet',
- what:'Starknet\'s native token. A ZK-rollup on Ethereum using the Cairo VM — validity proofs for every transaction, full EVM equivalence in progress, real developer community.',
- why:'Zero-knowledge proofs are not speculative. They are mathematics. Starknet built a real ZK stack over years of research. The token was crushed by aggressive airdrop unlocks and early community distribution. The protocol kept shipping. We entered when the selling felt reflexive, not fundamental.',
- breaks:'If ZK proving costs don\'t reach parity with optimistic rollups at scale. If the OP Stack ecosystem continues to dominate L2 market share. If Cairo adoption stalls relative to Solidity-native L2s.'},
+ what:'Starknet\'s native token. ZK-rollup on Ethereum — validity proofs for every transaction, Cairo VM, years of active development.',
+ why:'ZK proofs are mathematics, not speculation. The token was crushed by early airdrop distribution. The protocol kept shipping. We entered when the selling was about unlocks, not fundamentals.',
+ breaks:'ZK proving costs don\'t reach parity with optimistic rollups. OP Stack dominates L2 market share. Cairo adoption fails against Solidity-native alternatives.'},
 {ticker:'IO',type:'DePIN + AI',qty:5405.00,entry:0.1107,cost:598.33,geckoId:'io',
- what:'io.net\'s token. A decentralized GPU network aggregating idle compute for AI inference and training workloads — demand from AI labs, supply from underutilized hardware worldwide.',
- why:'The AI compute shortage is not a forecast. It is a constraint that costs real money today. io.net built a working marketplace. The token collapsed with DePIN sentiment. The underlying dynamic — GPU demand vastly exceeding organized supply — has not changed.',
- breaks:'If centralized hyperscalers drop GPU pricing fast enough to eliminate the arbitrage. If network reliability metrics fail to meet enterprise inference requirements. If the DePIN narrative exhaustion becomes a self-fulfilling collapse of developer attention.'},
+ what:'io.net\'s token. Decentralized GPU marketplace — aggregates idle compute for AI inference and training. Real supply, real demand, live network.',
+ why:'GPU scarcity is a present constraint, not a forecast. io.net built the marketplace. Token fell with DePIN sentiment. The supply-demand gap didn\'t.',
+ breaks:'Hyperscalers cut GPU prices fast enough to close the arbitrage. Network reliability fails enterprise thresholds. DePIN sentiment collapse becomes self-fulfilling.'},
 {ticker:'BIO',type:'DeSci',qty:25658.61,entry:0.021435,cost:549.99,geckoId:'bio-protocol',
- what:'BIO Protocol\'s token. Infrastructure for decentralized science — funding, IP tokenization, and governance for biotech research that cannot find traditional capital.',
- why:'The smallest position. The most experimental thesis. Traditional biotech funding is captured by incumbents. BIO Protocol creates a parallel capital path for researchers. We bought knowing it\'s early and the category is unproven. That is the position. The size reflects it.',
- breaks:'If no significant biotech IP funded through the protocol generates clinical or commercial returns. If regulatory environments close around tokenized research IP. If the DeSci narrative fails to attract credible scientific participation beyond crypto-native participants.'},
+ what:'BIO Protocol\'s token. Infrastructure for decentralized science — funding, IP tokenization, and governance for biotech research that can\'t access traditional capital.',
+ why:'Smallest position. Most experimental thesis. Biotech funding is incumbency-captured. BIO creates a parallel path. We bought early and sized accordingly.',
+ breaks:'No funded biotech IP generates clinical returns. Regulatory environments close around tokenized research IP. DeSci fails to attract credible scientists.'},
 {ticker:'ELIZAOS',type:'AI Framework',qty:482820.00,entry:0.0012427,cost:600.00,geckoId:'elizaos',
- what:'ElizaOS token. An open-source framework for building autonomous AI agents — multi-platform, multi-model, with a growing ecosystem of deployed agents and developer forks.',
- why:'AI agents need infrastructure before they need tokens. ElizaOS had the largest developer footprint in the space at the time of purchase. The token crashed from its narrative peak. The framework kept accumulating forks. We separated the technology from the sentiment.',
- breaks:'If major AI labs release competing agent frameworks that absorb developer attention. If the AI agent category proves to be primarily narrative with limited durable use cases. If ElizaOS fails to build revenue-generating agent deployments at scale.'}
+ what:'ElizaOS token. Open-source framework for autonomous AI agents — multi-platform, multi-model, largest developer fork count in the AI agent space.',
+ why:'Agents need infrastructure before they need tokens. ElizaOS had the broadest developer adoption at purchase. Token crashed from its narrative peak. The framework kept accumulating forks.',
+ breaks:'Major AI labs release competing frameworks and absorb developer attention. AI agent use cases prove shallow. ElizaOS fails to generate protocol-level revenue or retention.'}
 ];
 
 const ARCHIVE=[
