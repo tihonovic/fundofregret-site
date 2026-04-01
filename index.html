@@ -22,8 +22,8 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/favicon.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Fund of Regret","url":"https://fundofregret.com","description":"A public on-chain portfolio of beaten altcoins, turned into a series. Based on a true story.","sameAs":["https://x.com/fundofregret","https://t.me/fundofregret"]}</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEGM7XWJBG"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-JEGM7XWJBG');</script>
+<!-- GA loads only after consent — see initConsent() below -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -70,8 +70,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.6rem 3rem;display:
 @keyframes scrollP{0%,100%{opacity:0.3}50%{opacity:0.8}}
 
 /* ── HERO EYEBROW LINK ── */
-.hero-eyebrow-link{cursor:pointer;transition:color 0.3s,border-color 0.3s;border-bottom:1px solid rgba(158,149,140,0.45);padding-bottom:1px}
-.hero-eyebrow-link:hover,.hero-eyebrow-link:active{color:var(--tx2);border-bottom-color:rgba(176,168,158,0.7)}
+.hero-eyebrow-link{cursor:pointer;transition:color 0.3s,border-color 0.3s;border-bottom:1px solid rgba(158,149,140,0.6);padding-bottom:1px}
+.hero-eyebrow-link:hover,.hero-eyebrow-link:active{color:var(--tx2);border-bottom-color:rgba(176,168,158,0.9)}
 
 .live-dot{display:inline-block;width:5px;height:5px;background:var(--green);border-radius:50%;margin-right:6px;animation:liveP 2s ease-in-out infinite;vertical-align:middle}
 @keyframes liveP{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,157,110,0.4)}50%{opacity:0.6;box-shadow:0 0 0 6px rgba(74,157,110,0)}}
@@ -170,7 +170,7 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .reader-chrome-btn:disabled{opacity:0.2;cursor:default;pointer-events:none}
 .reader-chrome-btn:not(:disabled):hover{color:var(--tx)}
 .reader-chrome-btn-label{font-size:0.62rem;color:var(--tx3)}
-.reader-chrome-close{font-family:var(--hd);font-size:0.6rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;background:var(--bg);border:1px solid rgba(133,124,115,0.4);color:var(--tx2);padding:0.5rem 1.1rem;min-height:36px;min-width:72px;display:flex;align-items:center;justify-content:center;transition:color 0.3s,border-color 0.3s;flex-shrink:0}
+.reader-chrome-close{font-family:var(--hd);font-size:0.6rem;font-weight:400;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;background:var(--bg);border:1px solid rgba(133,124,115,0.6);color:var(--tx);padding:0.5rem 1.1rem;min-height:36px;min-width:72px;display:flex;align-items:center;justify-content:center;transition:color 0.3s,border-color 0.3s;flex-shrink:0}
 .reader-chrome-close:hover{color:var(--tx);border-color:var(--tx2)}
 .reader-chrome-close:active{color:var(--tx);border-color:var(--tx2);background:var(--bg2)}
 /* Scroll area: only article content scrolls here, starts below chrome */
@@ -230,7 +230,22 @@ footer{padding:8rem 2rem 3rem;text-align:center;max-width:1100px;margin:0 auto;b
 .footer-links a:hover{color:var(--tx2)}
 .footer-copy{font-family:var(--hd);font-size:0.65rem;font-weight:300;color:var(--tx3);letter-spacing:0.1em}
 
-/* ── REVEAL / ANIMATIONS ── */
+/* ── CONSENT BANNER ── */
+.consent-banner{position:fixed;bottom:0;left:0;right:0;z-index:300;background:var(--bg2);border-top:1px solid var(--brd);padding:1.4rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;transform:translateY(100%);transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);pointer-events:none}
+.consent-banner.visible{transform:translateY(0);pointer-events:all}
+.consent-text{font-family:var(--hd);font-size:0.78rem;font-weight:300;color:var(--tx2);line-height:1.6;max-width:560px}
+.consent-text a{color:var(--tx3);text-decoration:none;border-bottom:1px solid var(--brd);padding-bottom:1px;transition:color 0.3s,border-color 0.3s}
+.consent-text a:hover{color:var(--tx2);border-color:var(--tx3)}
+.consent-actions{display:flex;gap:2rem;flex-shrink:0;align-items:center}
+.consent-btn{font-family:var(--hd);font-size:0.62rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;background:none;border:none;cursor:pointer;transition:color 0.3s;padding:0;line-height:1}
+.consent-btn.accept{color:var(--tx);border-bottom:1px solid var(--brd);padding-bottom:2px;transition:color 0.3s,border-color 0.3s}
+.consent-btn.accept:hover{color:var(--tx);border-color:var(--tx2)}
+.consent-btn.decline{color:var(--tx3)}
+.consent-btn.decline:hover{color:var(--tx2)}
+@media(max-width:768px){
+.consent-banner{flex-direction:column;align-items:flex-start;padding:1.4rem 1.5rem;gap:1.2rem}
+.consent-actions{gap:2rem}
+}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 @keyframes shimmer{0%{opacity:0.2}50%{opacity:0.5}100%{opacity:0.2}}
@@ -315,17 +330,17 @@ footer{padding:5rem 1.5rem 3rem}
 
 <!-- ── LATEST TRANSMISSION ── -->
 <div class="latest-strip reveal" style="padding-top:3rem;padding-bottom:3rem">
-<div class="latest-inner" onclick="openArchiveFile(5)">
+<div class="latest-inner" onclick="openArchiveFile(6)">
 <div class="latest-left">
 <span class="latest-label">Latest File</span>
 <div class="latest-sep"></div>
 <div>
-<div class="latest-file">Pain Archive / #5</div>
-<div class="latest-title">Money Got Stuck</div>
+<div class="latest-file">Pain Archive / #6</div>
+<div class="latest-title">End of the Broker</div>
 </div>
 </div>
 <div>
-<div class="latest-date">March 25, 2026</div>
+<div class="latest-date">April 1, 2026</div>
 </div>
 <span class="latest-right">Read →</span>
 </div>
@@ -403,7 +418,7 @@ footer{padding:5rem 1.5rem 3rem}
 <footer>
 <div class="footer-phrase reveal">"Either we regret buying. Or you regret not buying."<br><em>Based on a true story.</em></div>
 <div class="footer-disclaimer">~€130,000 lost between 2022 and 2025. That was the tuition. Fund of Regret is the diploma. No signals. No promises. No financial advice. Not an investment product. An investment regret.</div>
-<div class="footer-links"><a href="https://x.com/fundofregret" target="_blank" rel="noopener">X / Twitter</a><a href="https://t.me/fundofregret" target="_blank" rel="noopener">Telegram</a><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener">Dropstab</a></div>
+<div class="footer-links"><a href="https://x.com/fundofregret" target="_blank" rel="noopener">X / Twitter</a><a href="https://t.me/fundofregret" target="_blank" rel="noopener">Telegram</a><a href="https://dropstab.com/p/fund-of-regret-aksstqo4zt" target="_blank" rel="noopener">Dropstab</a><a href="/privacy.html">Privacy</a><a href="#" onclick="reopenConsent();return false;">Cookie Settings</a></div>
 <div class="footer-copy">© 2026 Fund of Regret. Season 1.</div>
 </footer>
 
@@ -461,7 +476,7 @@ const ARCHIVE=[
 {n:3,title:'A Seat Was Found',quote:'"The perfect scam is when the victim asks for it."',date:'March 18, 2026',published:true,loss:null,climax:false},
 {n:4,title:'The Call and the Transfer',quote:'"The universe got tired of hinting."',date:'March 22, 2026',published:true,loss:null,climax:false},
 {n:5,title:'Money Got Stuck',quote:'"Everything became obvious. Just a bit too late."',date:'March 25, 2026',published:true,loss:null,climax:false},
-{n:6,title:'End of the Broker',quote:'"€60k. At least there\'s a story to tell."',date:'April, Week 1',published:false,loss:'~€60,000',climax:true},
+{n:6,title:'End of the Broker',quote:'"€60k. At least there\'s a story to tell."',date:'April 1, 2026',published:true,loss:'~€60,000',climax:true},
 {n:7,title:'NFTs at the Peak',quote:'"Art turned out to be temporary. The loss didn\'t."',date:'April, Week 2',published:false,loss:'~€20,000',climax:false},
 {n:8,title:'NFTs — How It Collapsed',quote:'"Minus 99%. Tried to sell."',date:'April, Week 3',published:false,loss:null,climax:false},
 {n:9,title:'STEPN — Entry',quote:'"Walked. Earned. Seemed genius."',date:'April, Week 4',published:false,loss:null,climax:false},
@@ -474,6 +489,19 @@ const ARCHIVE=[
 ];
 
 const ARCHIVE_CONTENT={
+6:{
+body:`<p>May 2022.</p>
+<p>When everything became clear, I did not disappear.</p>
+<p>I wrote the manager: I have someone. Serious money. He wants to test the withdrawal first. Take it out. Then send it back. That is how trust is built.</p>
+<p>They agreed.</p>
+<p>€5,000 came out. Another €5,000 had come out earlier, back when the returns still arrived on schedule.</p>
+<p>Recovered: €10,000. Lost: ~€60,000.</p>
+<p>What happened after that, I do not know. Maybe they understood. Maybe bitcoin was falling and the till was already empty. Maybe they had already spent it.</p>
+<p>The Swiss broker disappeared. As if it had never existed.</p>
+<p>It was the first. Not the last.</p>
+<p>Fund of Regret was built not despite this. Because of it.</p>`,
+closing:`€60k. At least there's a story to tell.`
+},
 1:{
 body:`<p>February 2022. I sold a business I had spent fifteen years building. Not a famous exit. Not a transformative number. But real — real customers, real payroll, real mornings where the outcome was genuinely uncertain.</p>
 <p>The wire arrived on a Wednesday. By Thursday I was reading about crypto.</p>
@@ -682,8 +710,36 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
 /* ── CLOSE NAV ON OUTSIDE CLICK ── */
 document.addEventListener('click',function(e){const nav=document.querySelector('.nav-links');const toggle=document.querySelector('.nav-toggle');if(nav&&nav.classList.contains('open')&&!nav.contains(e.target)&&!toggle.contains(e.target)){nav.classList.remove('open');}});
 
-/* ── INIT ── */
+/* ── CONSENT ── */
+const GA_ID='G-JEGM7XWJBG';
+
+function loadGA(){
+if(document.getElementById('ga-script'))return;
+const s=document.createElement('script');
+s.id='ga-script';s.async=true;
+s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
+document.head.appendChild(s);
+gtag('js',new Date());gtag('config',GA_ID);}
+
+function setConsent(choice){
+localStorage.setItem('for_consent',choice);
+document.getElementById('consent-banner').classList.remove('visible');
+if(choice==='accepted')loadGA();}
+
+function reopenConsent(){
+localStorage.removeItem('for_consent');
+document.getElementById('consent-banner').classList.add('visible');}
+
+function initConsent(){
+const c=localStorage.getItem('for_consent');
+if(c==='accepted'){loadGA();return;}
+if(c==='declined')return;
+/* No prior choice — show banner after brief delay */
+setTimeout(()=>document.getElementById('consent-banner').classList.add('visible'),800);}
+
+
 document.addEventListener('DOMContentLoaded',()=>{
+initConsent();
 renderArchive();
 renderCards(null);
 initReveal();
@@ -692,9 +748,17 @@ setInterval(fetchPrices,60000);
 /* Desktop: click on reader-scroll gutters (outside reader-wrap) closes overlay */
 document.getElementById('reader-scroll').addEventListener('click',function(e){
 if(window.innerWidth>768&&e.target===this)closeArchiveFile();});
-/* Mobile + desktop: click on chrome background (not on any button) closes overlay */
+/* Mobile: click on bare chrome background (not any child element) closes overlay */
 document.getElementById('reader-chrome').addEventListener('click',function(e){
-if(!e.target.closest('button'))closeArchiveFile();});});
+if(e.target===this)closeArchiveFile();});});
 </script>
-</body>
-</html>
+<!-- ── CONSENT BANNER ── -->
+<div class="consent-banner" id="consent-banner" role="dialog" aria-label="Analytics consent">
+<p class="consent-text">This site uses Google Analytics to understand how far regret travels. No personal data is sold or shared. <a href="/privacy.html">Privacy Policy</a></p>
+<div class="consent-actions">
+<button class="consent-btn accept" onclick="setConsent('accepted')">Accept</button>
+<button class="consent-btn decline" onclick="setConsent('declined')">Decline</button>
+</div>
+</div>
+
+
