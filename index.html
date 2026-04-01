@@ -236,15 +236,17 @@ footer{padding:8rem 2rem 3rem;text-align:center;max-width:1100px;margin:0 auto;b
 .consent-text{font-family:var(--hd);font-size:0.78rem;font-weight:300;color:var(--tx2);line-height:1.6;max-width:560px}
 .consent-text a{color:var(--tx3);text-decoration:none;border-bottom:1px solid var(--brd);padding-bottom:1px;transition:color 0.3s,border-color 0.3s}
 .consent-text a:hover{color:var(--tx2);border-color:var(--tx3)}
-.consent-actions{display:flex;gap:2rem;flex-shrink:0;align-items:center}
-.consent-btn{font-family:var(--hd);font-size:0.62rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;background:none;border:none;cursor:pointer;transition:color 0.3s;padding:0;line-height:1}
-.consent-btn.accept{color:var(--tx);border-bottom:1px solid var(--brd);padding-bottom:2px;transition:color 0.3s,border-color 0.3s}
-.consent-btn.accept:hover{color:var(--tx);border-color:var(--tx2)}
-.consent-btn.decline{color:var(--tx3)}
-.consent-btn.decline:hover{color:var(--tx2)}
+.consent-actions{display:flex;gap:0.5rem;flex-shrink:0;align-items:center}
+.consent-btn{font-family:var(--hd);font-size:0.62rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;background:none;border:none;cursor:pointer;transition:color 0.3s,border-color 0.3s,opacity 0.15s;line-height:1;min-height:44px;padding:0 1.2rem;display:inline-flex;align-items:center;position:relative}
+.consent-btn:focus-visible{outline:1px solid var(--tx3);outline-offset:2px}
+.consent-btn:active{opacity:0.7}
+.consent-btn.accept{color:var(--tx);border-bottom:1px solid rgba(226,221,213,0.35);padding-bottom:0}
+.consent-btn.accept:hover{color:var(--tx);border-bottom-color:var(--tx2)}
+.consent-btn.decline{color:var(--tx3);border-bottom:1px solid transparent}
+.consent-btn.decline:hover{color:var(--tx2);border-bottom-color:var(--brd)}
 @media(max-width:768px){
-.consent-banner{flex-direction:column;align-items:flex-start;padding:1.4rem 1.5rem;gap:1.2rem}
-.consent-actions{gap:2rem}
+.consent-banner{flex-direction:column;align-items:flex-start;padding:1.4rem 1.5rem;gap:1rem}
+.consent-actions{gap:0;margin-left:-1.2rem}
 }
 .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
