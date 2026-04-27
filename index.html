@@ -179,6 +179,7 @@ section{padding:10rem 2rem;max-width:1100px;margin:0 auto}
 .reader-eyebrow{font-family:var(--hd);font-size:0.6rem;font-weight:400;letter-spacing:0.4em;text-transform:uppercase;color:var(--tx3);margin-bottom:1rem;display:flex;align-items:center;gap:1.5rem}
 .reader-eyebrow-line{height:1px;background:var(--brd);flex:1}
 .reader-date{font-family:var(--hd);font-size:0.75rem;color:var(--tx3);letter-spacing:0.1em;margin-bottom:2.5rem}
+.reader-receipt{font-family:var(--hd);font-size:0.68rem;color:var(--tx3);letter-spacing:0.14em;text-transform:uppercase;margin-top:-1.5rem;margin-bottom:2.5rem}
 .reader-title{font-family:var(--hd);font-size:clamp(2rem,5vw,3.4rem);font-weight:300;color:var(--tx);line-height:1.15;letter-spacing:-0.01em;margin-bottom:2.5rem}
 .reader-quote{font-family:var(--hd);font-style:italic;font-weight:300;font-size:1.15rem;color:var(--tx2);line-height:1.8;border-left:2px solid var(--red);padding-left:2rem;margin-bottom:4rem}
 .reader-body{font-family:var(--bd);font-size:1.05rem;color:var(--tx2);line-height:2;font-weight:400}
@@ -479,8 +480,8 @@ const ARCHIVE=[
 {n:4,title:'The Call and the Transfer',quote:'"The universe got tired of hinting."',date:'March 22, 2026',published:true,loss:null,climax:false},
 {n:5,title:'Money Got Stuck',quote:'"Everything became obvious. Just a bit too late."',date:'March 25, 2026',published:true,loss:null,climax:false},
 {n:6,title:'End of the Broker',quote:'"€60k. At least there\'s a story to tell."',date:'April 1, 2026',published:true,loss:'~€60,000',climax:true},
-{n:7,title:'NFTs at the Peak',quote:'"Art turned out to be temporary. The loss didn\'t."',date:'April, Week 2',published:false,loss:'~€20,000',climax:false},
-{n:8,title:'NFTs — How It Collapsed',quote:'"Minus 99%. Tried to sell."',date:'April, Week 3',published:false,loss:null,climax:false},
+{n:7,title:'NFTs at the Peak',quote:'"Art turned out to be temporary. The loss didn\'t."',date:'April 8, 2026',published:true,loss:'~€20,000',climax:false},
+{n:8,title:'NFTs — How It Collapsed',quote:'"The file stayed in the wallet. The value didn\'t."',date:'April 21, 2026',published:true,loss:null,climax:false},
 {n:9,title:'STEPN — Entry',quote:'"Walked. Earned. Seemed genius."',date:'April, Week 4',published:false,loss:null,climax:false},
 {n:10,title:'STEPN — Exit',quote:'"Tokenomics is not a business model."',date:'May, Week 1',published:false,loss:'~€10,000',climax:false},
 {n:11,title:'Bybit — First Trades',quote:'"Leverage. Adrenaline. It worked."',date:'May, Week 2',published:false,loss:null,climax:false},
@@ -503,6 +504,22 @@ body:`<p>May 2022.</p>
 <p>It was the first. Not the last.</p>
 <p>Fund of Regret was built not despite this. Because of it.</p>`,
 closing:`€60k. At least there's a story to tell.`
+},
+7:{
+receipt:'Published on X · Apr 8, 2026',
+body:`<p>By then I had already piled into stocks, cars, and everything I called diversification.</p>
+<p>Then it was NFTs' turn.</p>
+<p>At the time, it didn't seem crazy. On the contrary, it felt timely and full of potential.</p>
+<p>I bought at the very top.</p>`,
+closing:`Art turned out to be temporary. The loss didn't.`
+},
+8:{
+receipt:'Published on X · Apr 21, 2026',
+body:`<p>NFTs were easiest to believe in at the top.</p>
+<p>Much harder after ~€20,000 turned into a reminder that some things can lose 99% and still not become cheap.</p>
+<p>The file stayed in the wallet. The value didn't.</p>
+<p>Pain Archive / #8</p>`,
+closing:`The file stayed in the wallet. The value didn't.`
 },
 1:{
 body:`<p>February 2022. I sold a business I had spent fifteen years building. Not a famous exit. Not a transformative number. But real — real customers, real payroll, real mornings where the outcome was genuinely uncertain.</p>
@@ -643,6 +660,7 @@ document.getElementById('reader-counter').textContent=`${idx+1} / ${publishedNum
 document.getElementById('reader-wrap').innerHTML=`
 <div class="reader-eyebrow"><span class="reader-eyebrow-line"></span>Pain Archive / #${n}<span class="reader-eyebrow-line"></span></div>
 <div class="reader-date">${item.date} &nbsp;·&nbsp; Fund of Regret</div>
+${content.receipt?`<div class="reader-receipt">${content.receipt}</div>`:''}
 <h2 class="reader-title">${item.title}</h2>
 <blockquote class="reader-quote">${item.quote}</blockquote>
 <div class="reader-body">${content.body}</div>
@@ -762,5 +780,4 @@ if(e.target===this)closeArchiveFile();});});
 <button class="consent-btn decline" onclick="setConsent('declined')">Decline</button>
 </div>
 </div>
-
 
